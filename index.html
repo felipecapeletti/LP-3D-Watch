@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produto X - Smartwatch Premium</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- model-viewer -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <!-- Fonte elegante (opcional) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- ICONS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- MASK -->
+    <script src="https://unpkg.com/imask"></script>
+
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        cursor: url('cursor.cur'), auto;
+      }
+
+      .background {
+        background: url('background.jpg') center center/cover no-repeat;
+      }
+    </style>
+  </head>
+  <body class="bg-[#0f0f0f] text-white">
+    <header class="top-0 w-full h-[15vh] flex flex-col justify-center items-center text-center border-b-2 border-[#C0A062] pt-6 bg-black/80">
+        <div class="w-[70%] max-w-6xl mx-auto">
+            <h1 class="text-5xl font-bold mb-4 text-white">
+            Produtos de <span class="text-[#C0A062]">Primeira Linha</span>
+            </h1>
+            <p class="text-gray-100 mb-4 text-lg">Tecnologia premium com design atemporal. O relógio que redefine sofisticação.</p>
+        </div>
+    </header>
+    <!-- BANNER -->
+    <section class="h-[85vh] flex flex-col items-center justify-center shadow background">
+        <!-- OBJETO 3D -->
+        <div class="w-full h-full flex justify-center">
+            <div class="relative w-[90vw] h-[85vh]">
+                <!-- Carousel container -->
+                <div id="carousel-3d" class="w-full h-full relative overflow-hidden">
+                    <model-viewer 
+                        src="watch1.glb"
+                        alt="watch 3D"
+                        auto-rotate 
+                        camera-controls 
+                        shadow-intensity="1"
+                        ar 
+                        class="bg-transparent w-full h-full rounded-3xl block transition-transform duration-500 ease-in-out"
+                        style="display: block; position: absolute; top: 0; left: 0;">
+                    </model-viewer>
+                    <model-viewer 
+                        src="watch2.glb"
+                        alt="watch 3D"
+                        auto-rotate 
+                        camera-controls 
+                        shadow-intensity="1"
+                        ar 
+                        class="bg-transparent w-full h-full rounded-3xl hidden transition-transform duration-500 ease-in-out"
+                        style="display: none; position: absolute; top: 0; left: 0;">
+                    </model-viewer>
+                </div>
+                <!-- Controles do Carrossel -->
+                <button id="prev-3d" class="absolute left-2 top-1/2 text-[#C0A062] hover:scale-125 text-3xl p-2 transition z-10">
+                    <i class="bi bi-caret-left"></i>
+                </button>
+                <button id="next-3d" class="absolute right-2 top-1/2 text-[#C0A062] hover:scale-125 text-3xl p-2 transition z-10">
+                    <i class="bi bi-caret-right"></i>
+                </button>
+            </div>
+            <script>
+                const viewers = document.querySelectorAll('#carousel-3d model-viewer');
+                let current = 0;
+                let animating = false;
+
+                function animateTransition(next, direction) {
+                    if (animating || next === current) return;
+                    animating = true;
+                    const outViewer = viewers[current];
+                    const inViewer = viewers[next];
+
+                    inViewer.style.display = 'block';
+                    inViewer.classList.remove('hidden');
+                    inViewer.style.zIndex = 2;
+                    outViewer.style.zIndex = 1;
+
+                    inViewer.style.transform = `translateX(${direction === 'next' ? '100%' : '-100%'})`;
+                    outViewer.style.transform = 'translateX(0%)';
+
+                    // Animação
+                    setTimeout(() => {
+                        outViewer.style.transition = 'transform 0.5s ease-in-out';
+                        inViewer.style.transition = 'transform 0.5s ease-in-out';
+                        outViewer.style.transform = `translateX(${direction === 'next' ? '-100%' : '100%'})`;
+                        inViewer.style.transform = 'translateX(0%)';
+                    }, 10);
+
+                    setTimeout(() => {
+                        outViewer.style.display = 'none';
+                        outViewer.classList.add('hidden');
+                        outViewer.style.transition = '';
+                        outViewer.style.transform = '';
+                        inViewer.style.transition = '';
+                        inViewer.style.transform = '';
+                        inViewer.style.zIndex = '';
+                        outViewer.style.zIndex = '';
+                        current = next;
+                        animating = false;
+                    }, 510);
+                }
+
+                document.getElementById('prev-3d').onclick = () => {
+                    if (animating) return;
+                    const next = (current - 1 + viewers.length) % viewers.length;
+                    animateTransition(next, 'prev');
+                };
+                document.getElementById('next-3d').onclick = () => {
+                    if (animating) return;
+                    const next = (current + 1) % viewers.length;
+                    animateTransition(next, 'next');
+                };
+
+                viewers.forEach((v, i) => {
+                    v.style.position = 'absolute';
+                    v.style.top = 0;
+                    v.style.left = 0;
+                    v.style.width = '100%';
+                    v.style.height = '100%';
+                    if (i !== current) {
+                        v.style.display = 'none';
+                        v.classList.add('hidden');
+                    } else {
+                        v.style.display = 'block';
+                        v.classList.remove('hidden');
+                    }
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="border-t-2 border-[#C0A062] background">
+        <div class="w-full h-full bg-black/90 py-24 px-6">
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-center">
+                <!-- Card 1 -->
+                <div class="group bg-black/80 p-0 border border-[#C0A062] rounded-3xl shadow-2xl shadow-black overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="img1.png" alt="Luxo Refinado" class="w-full h-56 object-cover object-center transition-opacity duration-300 group-hover:opacity-90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-extrabold text-[#C0A062] mb-2 tracking-wide">Luxo Refinado</h3>
+                        <p class="text-gray-300 text-base">Acabamento impecável e materiais premium para um relógio que exala exclusividade e sofisticação.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="group bg-black/80 p-0 border border-[#C0A062] rounded-3xl shadow-2xl shadow-black overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="img2.png" alt="Discrição Elegante" class="w-full h-56 object-cover object-center transition-opacity duration-300 group-hover:opacity-90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-extrabold text-[#C0A062] mb-2 tracking-wide">Discrição Elegante</h3>
+                        <p class="text-gray-300 text-base">Design minimalista que combina com qualquer ocasião, transmitindo bom gosto sem excessos.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="group bg-black/80 p-0 border border-[#C0A062] rounded-3xl shadow-2xl shadow-black overflow-hidden transition-transform duration-300 hover:scale-105">
+                    <div class="relative">
+                        <img src="img3.png" alt="Sempre na Moda" class="w-full h-56 object-cover object-center transition-opacity duration-300 group-hover:opacity-90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-extrabold text-[#C0A062] mb-2 tracking-wide">Sempre na Moda</h3>
+                        <p class="text-gray-300 text-base">Um acessório atemporal que acompanha as tendências e valoriza seu estilo em qualquer momento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center py-20 px-6 bg-[#C0A062] text-black">
+      <h2 class="text-3xl font-bold mb-4">Experimente o luxo dos nossos produtos</h2>
+      <p class="mb-6 text-black/80">Garanta o seu agora com frete grátis e garantia estendida.</p>
+    <a id="open-modal" class="inline-block px-8 py-3 bg-black text-white font-bold rounded-full hover:opacity-90 transition cursor-pointer">
+      Comprar Agora
+    </a>
+
+    <!-- Modal -->
+    <div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
+      <div class="bg-white rounded-2xl p-8 max-w-md w-full relative shadow-lg">
+        <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-black text-2xl">&times;</button>
+        <h3 class="text-2xl font-bold mb-4 text-[#C0A062]">Contato</h3>
+        <form class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1" for="nome">Nome</label>
+          <input id="nome" name="nome" type="text" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C0A062]"/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1" for="email">E-mail</label>
+          <input id="email" name="email" type="email" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C0A062]"/>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1" for="mensagem">Telefone</label>
+          <input id="numero" name="numero" type="text" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C0A062]"/>
+        </div>
+        <button type="submit" class="w-full bg-[#C0A062] text-black font-bold py-2 rounded hover:bg-[#a2824f] transition">Enviar</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      const openModalBtn = document.getElementById('open-modal');
+      const closeModalBtn = document.getElementById('close-modal');
+      const modal = document.getElementById('contact-modal');
+
+      openModalBtn.addEventListener('click', () => {
+        modal.classList.remove('hidden');
+      });
+
+      closeModalBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+      });
+
+      // Fecha o modal ao clicar fora do conteúdo
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+        modal.classList.add('hidden');
+        }
+      });
+    </script>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-[#0d0d0d] text-center py-6 text-gray-500 text-sm">
+    Desenvolvido por Felipe Gerardi © <script>document.write(new Date().getFullYear())</script> Todos os direitos reservados.
+    </footer>
+  </body>
+      <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      IMask(document.getElementById('numero'), {
+        mask: [
+        {
+          mask: '(00) 0000-0000'
+        },
+        {
+          mask: '(00) 00000-0000'
+        }
+        ]
+      });
+      });
+    </script>
+</html>

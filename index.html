@@ -34,19 +34,19 @@
     </style>
   </head>
   <body class="bg-[#0f0f0f] text-white">
-    <header class="top-0 w-full h-[15vh] flex flex-col justify-center items-center text-center border-b-2 border-[#C0A062] pt-6 bg-black/80">
-        <div class="w-[70%] max-w-6xl mx-auto">
-            <h1 class="text-5xl font-bold mb-4 text-white">
-            Produtos de <span class="text-[#C0A062]">Primeira Linha</span>
+    <header class="top-0 w-full flex flex-col justify-center items-center text-center border-b-2 border-[#C0A062] pt-6 bg-black/80 min-h-[120px]">
+        <div class="w-[90%] max-w-6xl mx-auto">
+            <h1 class="text-3xl md:text-5xl font-bold mb-2 md:mb-4 text-white">
+                Produtos de <span class="text-[#C0A062]">Primeira Linha</span>
             </h1>
-            <p class="text-gray-100 mb-4 text-lg">Tecnologia premium com design atemporal. O relógio que redefine sofisticação.</p>
+            <p class="text-gray-100 mb-2 md:mb-4 text-base md:text-lg">Tecnologia premium com design atemporal. O relógio que redefine sofisticação.</p>
         </div>
     </header>
     <!-- BANNER -->
-    <section class="h-[85vh] flex flex-col items-center justify-center shadow background">
+    <section class="min-h-[60vh] md:h-[85vh] flex flex-col items-center justify-center shadow background">
         <!-- OBJETO 3D -->
         <div class="w-full h-full flex justify-center">
-            <div class="relative w-[90vw] h-[85vh]">
+            <div class="relative w-full max-w-4xl h-[60vw] max-h-[85vh] min-h-[300px]">
                 <!-- Carousel container -->
                 <div id="carousel-3d" class="w-full h-full relative overflow-hidden">
                     <model-viewer 
@@ -71,10 +71,10 @@
                     </model-viewer>
                 </div>
                 <!-- Controles do Carrossel -->
-                <button id="prev-3d" class="absolute left-2 top-1/2 text-[#C0A062] hover:scale-125 text-3xl p-2 transition z-10">
+                <button id="prev-3d" class="absolute left-2 top-1/2 -translate-y-1/2 text-[#C0A062] hover:scale-125 text-2xl md:text-3xl p-2 transition z-10 bg-black/60 rounded-full">
                     <i class="bi bi-caret-left"></i>
                 </button>
-                <button id="next-3d" class="absolute right-2 top-1/2 text-[#C0A062] hover:scale-125 text-3xl p-2 transition z-10">
+                <button id="next-3d" class="absolute right-2 top-1/2 -translate-y-1/2 text-[#C0A062] hover:scale-125 text-2xl md:text-3xl p-2 transition z-10 bg-black/60 rounded-full">
                     <i class="bi bi-caret-right"></i>
                 </button>
             </div>
@@ -97,7 +97,6 @@
                     inViewer.style.transform = `translateX(${direction === 'next' ? '100%' : '-100%'})`;
                     outViewer.style.transform = 'translateX(0%)';
 
-                    // Animação
                     setTimeout(() => {
                         outViewer.style.transition = 'transform 0.5s ease-in-out';
                         inViewer.style.transition = 'transform 0.5s ease-in-out';
@@ -150,39 +149,39 @@
 
     <!-- FEATURES -->
     <section class="border-t-2 border-[#C0A062] background">
-        <div class="w-full h-full bg-black/90 py-24 px-6">
-            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-10 text-center">
+        <div class="w-full h-full bg-black/90 py-12 md:py-24 px-2 md:px-6">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 text-center px-20 md:px-0">
                 <!-- Card 1 -->
                 <div class="group bg-black/80 p-0 border border-[#C0A062] rounded-3xl shadow-2xl shadow-black overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="relative">
-                        <img src="img1.png" alt="Luxo Refinado" class="w-full h-56 object-cover object-center transition-opacity duration-300 group-hover:opacity-90" />
+                        <img src="img1.png" alt="Luxo Refinado" class="w-full h-40 md:h-56 object-cover object-center transition-opacity duration-300 group-hover:opacity-90" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-extrabold text-[#C0A062] mb-2 tracking-wide">Luxo Refinado</h3>
-                        <p class="text-gray-300 text-base">Acabamento impecável e materiais premium para um relógio que exala exclusividade e sofisticação.</p>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-extrabold text-[#C0A062] mb-1 md:mb-2 tracking-wide">Luxo Refinado</h3>
+                        <p class="text-gray-300 text-sm md:text-base">Acabamento impecável e materiais premium para um relógio que exala exclusividade e sofisticação.</p>
                     </div>
                 </div>
                 <!-- Card 2 -->
                 <div class="group bg-black/80 p-0 border border-[#C0A062] rounded-3xl shadow-2xl shadow-black overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="relative">
-                        <img src="img2.png" alt="Discrição Elegante" class="w-full h-56 object-cover object-center transition-opacity duration-300 group-hover:opacity-90" />
+                        <img src="img2.png" alt="Discrição Elegante" class="w-full h-40 md:h-56 object-cover object-center transition-opacity duration-300 group-hover:opacity-90" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-extrabold text-[#C0A062] mb-2 tracking-wide">Discrição Elegante</h3>
-                        <p class="text-gray-300 text-base">Design minimalista que combina com qualquer ocasião, transmitindo bom gosto sem excessos.</p>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-extrabold text-[#C0A062] mb-1 md:mb-2 tracking-wide">Discrição Elegante</h3>
+                        <p class="text-gray-300 text-sm md:text-base">Design minimalista que combina com qualquer ocasião, transmitindo bom gosto sem excessos.</p>
                     </div>
                 </div>
                 <!-- Card 3 -->
                 <div class="group bg-black/80 p-0 border border-[#C0A062] rounded-3xl shadow-2xl shadow-black overflow-hidden transition-transform duration-300 hover:scale-105">
                     <div class="relative">
-                        <img src="img3.png" alt="Sempre na Moda" class="w-full h-56 object-cover object-center transition-opacity duration-300 group-hover:opacity-90" />
+                        <img src="img3.png" alt="Sempre na Moda" class="w-full h-40 md:h-56 object-cover object-center transition-opacity duration-300 group-hover:opacity-90" />
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-extrabold text-[#C0A062] mb-2 tracking-wide">Sempre na Moda</h3>
-                        <p class="text-gray-300 text-base">Um acessório atemporal que acompanha as tendências e valoriza seu estilo em qualquer momento.</p>
+                    <div class="p-4 md:p-6">
+                        <h3 class="text-lg md:text-xl font-extrabold text-[#C0A062] mb-1 md:mb-2 tracking-wide">Sempre na Moda</h3>
+                        <p class="text-gray-300 text-sm md:text-base">Um acessório atemporal que acompanha as tendências e valoriza seu estilo em qualquer momento.</p>
                     </div>
                 </div>
             </div>
@@ -190,74 +189,74 @@
     </section>
 
     <!-- CTA -->
-    <section class="text-center py-20 px-6 bg-[#C0A062] text-black">
-      <h2 class="text-3xl font-bold mb-4">Experimente o luxo dos nossos produtos</h2>
-      <p class="mb-6 text-black/80">Garanta o seu agora com frete grátis e garantia estendida.</p>
-    <a id="open-modal" class="inline-block px-8 py-3 bg-black text-white font-bold rounded-full hover:opacity-90 transition cursor-pointer">
-      Comprar Agora
-    </a>
+    <section class="text-center py-12 md:py-20 px-2 md:px-6 bg-[#C0A062] text-black">
+        <h2 class="text-2xl md:text-3xl font-bold mb-2 md:mb-4">Experimente o luxo dos nossos produtos</h2>
+        <p class="mb-4 md:mb-6 text-black/80 text-base md:text-lg">Garanta o seu agora com frete grátis e garantia estendida.</p>
+        <a id="open-modal" class="inline-block px-6 md:px-8 py-2 md:py-3 bg-black text-white font-bold rounded-full hover:opacity-90 transition cursor-pointer">
+            Comprar Agora
+        </a>
 
-    <!-- Modal -->
-    <div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
-      <div class="bg-white rounded-2xl p-8 max-w-md w-full relative shadow-lg">
-        <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-black text-2xl">&times;</button>
-        <h3 class="text-2xl font-bold mb-4 text-[#C0A062]">Contato</h3>
-        <form class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1" for="nome">Nome</label>
-          <input id="nome" name="nome" type="text" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C0A062]"/>
+        <!-- Modal -->
+        <div id="contact-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-2xl p-4 md:p-8 max-w-xs sm:max-w-md w-full relative shadow-lg">
+                <button id="close-modal" class="absolute top-2 right-2 md:top-3 md:right-3 text-gray-500 hover:text-black text-2xl">&times;</button>
+                <h3 class="text-xl md:text-2xl font-bold mb-2 md:mb-4 text-[#C0A062]">Contato</h3>
+                <form class="space-y-3 md:space-y-4">
+                    <div>
+                        <label class="block text-xs md:text-sm font-medium text-gray-700 mb-1" for="nome">Nome</label>
+                        <input id="nome" name="nome" type="text" required class="w-full border border-gray-300 rounded px-2 md:px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C0A062]"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs md:text-sm font-medium text-gray-700 mb-1" for="email">E-mail</label>
+                        <input id="email" name="email" type="email" required class="w-full border border-gray-300 rounded px-2 md:px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C0A062]"/>
+                    </div>
+                    <div>
+                        <label class="block text-xs md:text-sm font-medium text-gray-700 mb-1" for="mensagem">Telefone</label>
+                        <input id="numero" name="numero" type="text" required class="w-full border border-gray-300 rounded px-2 md:px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C0A062]"/>
+                    </div>
+                    <button type="submit" class="w-full bg-[#C0A062] text-black font-bold py-2 rounded hover:bg-[#a2824f] transition">Enviar</button>
+                </form>
+            </div>
         </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1" for="email">E-mail</label>
-          <input id="email" name="email" type="email" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C0A062]"/>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1" for="mensagem">Telefone</label>
-          <input id="numero" name="numero" type="text" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#C0A062]"/>
-        </div>
-        <button type="submit" class="w-full bg-[#C0A062] text-black font-bold py-2 rounded hover:bg-[#a2824f] transition">Enviar</button>
-        </form>
-      </div>
-    </div>
-    <script>
-      const openModalBtn = document.getElementById('open-modal');
-      const closeModalBtn = document.getElementById('close-modal');
-      const modal = document.getElementById('contact-modal');
+        <script>
+            const openModalBtn = document.getElementById('open-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const modal = document.getElementById('contact-modal');
 
-      openModalBtn.addEventListener('click', () => {
-        modal.classList.remove('hidden');
-      });
+            openModalBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+            });
 
-      closeModalBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
-      });
+            closeModalBtn.addEventListener('click', () => {
+                modal.classList.add('hidden');
+            });
 
-      // Fecha o modal ao clicar fora do conteúdo
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-        modal.classList.add('hidden');
-        }
-      });
-    </script>
+            // Fecha o modal ao clicar fora do conteúdo
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+        </script>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-[#0d0d0d] text-center py-6 text-gray-500 text-sm">
-    Desenvolvido por Felipe Gerardi © <script>document.write(new Date().getFullYear())</script> Todos os direitos reservados.
+    <footer class="bg-[#0d0d0d] text-center py-4 md:py-6 text-gray-500 text-xs md:text-sm">
+        Desenvolvido por Felipe Gerardi © <script>document.write(new Date().getFullYear())</script> Todos os direitos reservados.
     </footer>
-  </body>
-      <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      IMask(document.getElementById('numero'), {
-        mask: [
-        {
-          mask: '(00) 0000-0000'
-        },
-        {
-          mask: '(00) 00000-0000'
-        }
-        ]
-      });
-      });
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            IMask(document.getElementById('numero'), {
+                mask: [
+                {
+                mask: '(00) 0000-0000'
+                },
+                {
+                mask: '(00) 00000-0000'
+                }
+                ]
+            });
+        });
     </script>
+  </body>
 </html>
